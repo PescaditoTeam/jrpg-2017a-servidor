@@ -1,5 +1,5 @@
 # World Of Middle Earth (WOME) - servidor
-
+https://travis-ci.org/PescaditoTeam/jrpg-2017a-servidor.svg?branch=master
 ## Sobre las personas
 
 > Para ver los participantes anteriores, referirse al archivo [humans.md](humans.md)
