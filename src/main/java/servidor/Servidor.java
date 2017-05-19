@@ -35,7 +35,7 @@ public class Servidor extends Thread {
 	private static ServerSocket serverSocket;
 	private static Conector conexionDB;
 	private final int PUERTO = 9999;
-
+	
 	private final static int ANCHO = 700;
 	private final static int ALTO = 640;
 	private final static int ALTO_LOG = 520;
@@ -49,7 +49,7 @@ public class Servidor extends Thread {
 	public static void main(String[] args) {
 		cargarInterfaz();	
 	}
-
+	
 	private static void cargarInterfaz() {
 		JFrame ventana = new JFrame("Servidor WOME");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,7 +90,7 @@ public class Servidor extends Thread {
 		botonDetener.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					server.stop();
+					server.stop();//////////////////////////////////////////////////////////////////////////////////////
 					for (EscuchaCliente cliente : clientesConectados) {
 						cliente.getSalida().close();
 						cliente.getEntrada().close();
