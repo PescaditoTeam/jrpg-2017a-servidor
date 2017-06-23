@@ -1,14 +1,16 @@
 package servidor;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import com.google.gson.Gson;
 
-import cliente.*;
-import dominio.*;
 import estados.Estado;
 import mensajeria.Comando;
+import mensajeria.ComandoServidor;
+import mensajeria.InicioSesion;
 import mensajeria.Paquete;
 import mensajeria.PaqueteAtacar;
 import mensajeria.PaqueteBatalla;
@@ -18,6 +20,7 @@ import mensajeria.PaqueteFinalizarBatalla;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 import mensajeria.PaqueteUsuario;
+import mensajeria.Registro;
 
 public class EscuchaCliente extends Thread {
 
@@ -32,6 +35,7 @@ public class EscuchaCliente extends Thread {
 	private PaqueteBatalla paqueteBatalla;
 	private PaqueteAtacar paqueteAtacar;
 	private PaqueteFinalizarBatalla paqueteFinalizarBatalla;
+	private PaqueteUsuario paqueteUsuario;
 	
 	private PaqueteDeMovimientos paqueteDeMovimiento;
 	private PaqueteDePersonajes paqueteDePersonajes;
@@ -48,18 +52,24 @@ public class EscuchaCliente extends Thread {
 
 			Paquete paquete;
 			Paquete paqueteSv = new Paquete(null, 0);
-			PaqueteUsuario paqueteUsuario = new PaqueteUsuario();
+			paqueteUsuario = new PaqueteUsuario();
 
 			String cadenaLeida = (String) entrada.readObject();
 		
 			while (!((paquete = gson.fromJson(cadenaLeida, Paquete.class)).getComando() == Comando.DESCONECTAR)){
 								
+
 				switch (paquete.getComando()) {
 				
 				case Comando.REGISTRO:
 					
+					ComandoServidor comando = new Registro();
+					comando.setCadenaLeida(cadenaLeida);
+					comando.setEscuchaCliente(this);
+					comando.resolver();
+					
 					// Paquete que le voy a enviar al usuario
-					paqueteSv.setComando(Comando.REGISTRO);
+					/*paqueteSv.setComando(Comando.REGISTRO);
 					
 					paqueteUsuario = (PaqueteUsuario) (gson.fromJson(cadenaLeida, PaqueteUsuario.class)).clone();
 
@@ -71,8 +81,9 @@ public class EscuchaCliente extends Thread {
 					} else {
 						paqueteSv.setMensaje(Paquete.msjFracaso);
 						salida.writeObject(gson.toJson(paqueteSv));
-					}
+					}*/
 					break;
+				
 
 				case Comando.CREACIONPJ:
 					
@@ -88,7 +99,12 @@ public class EscuchaCliente extends Thread {
 					break;
 
 				case Comando.INICIOSESION:
-					paqueteSv.setComando(Comando.INICIOSESION);
+					
+					ComandoServidor comando2 = new InicioSesion();
+					comando2.setCadenaLeida(cadenaLeida);
+					comando2.setEscuchaCliente(this);
+					comando2.resolver();
+					/*paqueteSv.setComando(Comando.INICIOSESION);
 					
 					// Recibo el paquete usuario
 					paqueteUsuario = (PaqueteUsuario) (gson.fromJson(cadenaLeida, PaqueteUsuario.class));
@@ -107,7 +123,7 @@ public class EscuchaCliente extends Thread {
 					} else {
 						paqueteSv.setMensaje(Paquete.msjFracaso);
 						salida.writeObject(gson.toJson(paqueteSv));
-					}
+					}*/
 					break;
 
 				case Comando.SALIR:
@@ -254,6 +270,14 @@ public class EscuchaCliente extends Thread {
 		} 
 	}
 	
+	public PaqueteUsuario getPaqueteUsuario() {
+		return paqueteUsuario;
+	}
+
+	public void setPaqueteUsuario(PaqueteUsuario paqueteUsuario) {
+		this.paqueteUsuario = paqueteUsuario;
+	}
+
 	public Socket getSocket() {
 		return socket;
 	}
@@ -270,8 +294,69 @@ public class EscuchaCliente extends Thread {
 		return paquetePersonaje;
 	}
 	
+	public PaqueteMovimiento getPaqueteMovimiento() {
+		return paqueteMovimiento;
+	}
+
+	public void setPaqueteMovimiento(PaqueteMovimiento paqueteMovimiento) {
+		this.paqueteMovimiento = paqueteMovimiento;
+	}
+
+	public PaqueteBatalla getPaqueteBatalla() {
+		return paqueteBatalla;
+	}
+
+	public void setPaqueteBatalla(PaqueteBatalla paqueteBatalla) {
+		this.paqueteBatalla = paqueteBatalla;
+	}
+
+	public PaqueteAtacar getPaqueteAtacar() {
+		return paqueteAtacar;
+	}
+
+	public void setPaqueteAtacar(PaqueteAtacar paqueteAtacar) {
+		this.paqueteAtacar = paqueteAtacar;
+	}
+
+	public PaqueteFinalizarBatalla getPaqueteFinalizarBatalla() {
+		return paqueteFinalizarBatalla;
+	}
+
+	public void setPaqueteFinalizarBatalla(PaqueteFinalizarBatalla paqueteFinalizarBatalla) {
+		this.paqueteFinalizarBatalla = paqueteFinalizarBatalla;
+	}
+
+	public PaqueteDeMovimientos getPaqueteDeMovimiento() {
+		return paqueteDeMovimiento;
+	}
+
+	public void setPaqueteDeMovimiento(PaqueteDeMovimientos paqueteDeMovimiento) {
+		this.paqueteDeMovimiento = paqueteDeMovimiento;
+	}
+
+	public PaqueteDePersonajes getPaqueteDePersonajes() {
+		return paqueteDePersonajes;
+	}
+
+	public void setPaqueteDePersonajes(PaqueteDePersonajes paqueteDePersonajes) {
+		this.paqueteDePersonajes = paqueteDePersonajes;
+	}
+
+	public Gson getGson() {
+		return gson;
+	}
+
+	public void setIdPersonaje(int idPersonaje) {
+		this.idPersonaje = idPersonaje;
+	}
+
+	public void setPaquetePersonaje(PaquetePersonaje paquetePersonaje) {
+		this.paquetePersonaje = paquetePersonaje;
+	}
+
 	public int getIdPersonaje() {
 		return idPersonaje;
 	}
+
 }
 
