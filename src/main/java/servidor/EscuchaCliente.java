@@ -57,15 +57,11 @@ public class EscuchaCliente extends Thread {
 			String cadenaLeida = (String) entrada.readObject();
 		
 			while (!((paquete = gson.fromJson(cadenaLeida, Paquete.class)).getComando() == Comando.DESCONECTAR)){
-								
-
 				switch (paquete.getComando()) {
 				
 				case Comando.REGISTRO:
 					
-					ComandoServidor comando = new Registro();
-					comando.setCadenaLeida(cadenaLeida);
-					comando.setEscuchaCliente(this);
+					ComandoServidor comando = new Registro(cadenaLeida, this);
 					comando.resolver();
 					
 					// Paquete que le voy a enviar al usuario
@@ -100,9 +96,7 @@ public class EscuchaCliente extends Thread {
 
 				case Comando.INICIOSESION:
 					
-					ComandoServidor comando2 = new InicioSesion();
-					comando2.setCadenaLeida(cadenaLeida);
-					comando2.setEscuchaCliente(this);
+					ComandoServidor comando2 = new InicioSesion(cadenaLeida, this);
 					comando2.resolver();
 					/*paqueteSv.setComando(Comando.INICIOSESION);
 					
@@ -244,8 +238,6 @@ public class EscuchaCliente extends Thread {
 				default:
 					break;
 				}
-				
-				cadenaLeida = (String) entrada.readObject();
 			}
 
 			entrada.close();

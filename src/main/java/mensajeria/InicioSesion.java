@@ -4,9 +4,15 @@ import java.io.IOException;
 
 import com.google.gson.Gson;
 
+import servidor.EscuchaCliente;
 import servidor.Servidor;
 
 public class InicioSesion extends ComandoServidor{
+
+	public InicioSesion(String cadenaLeida, EscuchaCliente e) {
+		super(cadenaLeida, e);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void resolver() {
