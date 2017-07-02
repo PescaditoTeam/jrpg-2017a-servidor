@@ -226,6 +226,7 @@ public class Conector {
 			stActualizarMochila.setInt(8, paquetePersonaje.getMochila().getInventario()[7]);
 			stActualizarMochila.setInt(9, paquetePersonaje.getMochila().getInventario()[8]);
 			stActualizarMochila.setInt(10, paquetePersonaje.getMochila().getInventario()[9]);
+			stActualizarMochila.setInt(11, paquetePersonaje.getId());
 			stActualizarMochila.executeUpdate();
 
 			Servidor.log.append("El personaje " + paquetePersonaje.getNombre() + " se ha actualizado con �xito."

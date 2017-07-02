@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import com.google.gson.Gson;
 
+import dominio.Item;
+import dominio.MyRandom;
+import recursos.Recursos;
 import servidor.EscuchaCliente;
 import servidor.Servidor;
 
@@ -16,7 +19,9 @@ public class ActualizarPersonaje extends ComandoServidor{
 	@Override
 	public void resolver() throws IOException {
 		Gson gson = new Gson();
+		
 		escuchaCliente.setPaquetePersonaje((PaquetePersonaje) gson.fromJson(cadenaLeida, PaquetePersonaje.class));
+
 		Servidor.getConector().actualizarPersonaje(escuchaCliente.getPaquetePersonaje());
 		
 		Servidor.getPersonajesConectados().remove(escuchaCliente.getPaquetePersonaje().getId());
