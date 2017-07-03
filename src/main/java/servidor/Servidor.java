@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import dominio.Ofertas;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 
@@ -29,6 +30,7 @@ public class Servidor extends Thread {
 	
 	private static Map<Integer, PaqueteMovimiento> ubicacionPersonajes = new HashMap<>();
 	private static Map<Integer, PaquetePersonaje> personajesConectados = new HashMap<>();
+	private static ArrayList<Ofertas> ofertasDisponibles = new ArrayList<Ofertas>();
 
 	private static Thread server;
 	
@@ -164,7 +166,7 @@ public class Servidor extends Thread {
 				clientesConectados.add(atencion);
 			}
 		} catch (Exception e) {
-			log.append("Fallo la conexión." + System.lineSeparator());
+			log.append("Fallo la conexiï¿½n." + System.lineSeparator());
 			e.printStackTrace();
 		}
 	}
@@ -184,4 +186,16 @@ public class Servidor extends Thread {
 	public static Conector getConector() {
 		return conexionDB;
 	}
+
+	public static ArrayList<Ofertas> getOfertasDisponibles() {
+		return ofertasDisponibles;
+	}
+
+	public static void AgregarOferta(Ofertas o){
+		ofertasDisponibles.add(o);
+	}
+	public static void setOfertasDisponibles(ArrayList<Ofertas> ofertasDisponibles) {
+		Servidor.ofertasDisponibles = ofertasDisponibles;
+	}
+	
 }

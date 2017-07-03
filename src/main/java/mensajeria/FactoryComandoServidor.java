@@ -41,6 +41,9 @@ public class FactoryComandoServidor {
 		case Comando.ACTUALIZARPERSONAJE:
 			comando = new ActualizarPersonaje(cadenaLeida, ec);
 			break;
+		case Comando.AGREGAROFERTA:
+			comando = new AgregarOferta(cadenaLeida, ec);
+			break;
 		default:
 			return null;
 		}

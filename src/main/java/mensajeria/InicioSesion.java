@@ -21,7 +21,6 @@ public class InicioSesion extends ComandoServidor{
 		Gson gson = new Gson();
 		
 		// Recibo el paquete usuario
-		//ERROR ACA TAMBIEN
 		escuchaCliente.setPaqueteUsuario((PaqueteUsuario) (gson.fromJson(cadenaLeida, PaqueteUsuario.class)));
 		
 		// Si se puede loguear el usuario le envio un mensaje de exito y el paquete personaje con los datos
