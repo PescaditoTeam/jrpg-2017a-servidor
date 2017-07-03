@@ -22,6 +22,7 @@ configurations {
 }
 
 dependencies {
+	compile files('gson-2.8.0.jar','sqlite-jdbc-3.15.1.jar','DominioJAR.jar','ClienteJAR.jar')
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     testCompile group: 'junit', name: 'junit', version: '4.+'
     pmdConf group: 'pmd', name: 'pmd', version: '4.3'
