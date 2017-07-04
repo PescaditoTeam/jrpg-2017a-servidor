@@ -1,0 +1,11 @@
+10
+PocionSalud 0 50 0 0 0 0
+PocionEnergia 0 0 50 0 0 0
+Escudo 100 0 0 0 0 0
+Armamento 0 0 0 0 0 50
+Agua 0 0 0 30 0 0
+Libros 0 0 0 0 20 0
+VaritaMagica 0 0 0 0 50 0
+Veneno 0 -20 0 0 0 0
+Cansancio 0 0 -30 0 0 0
+Lentitud 0 0 0 -35 0 0
