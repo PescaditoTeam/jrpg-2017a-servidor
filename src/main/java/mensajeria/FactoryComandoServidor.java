@@ -44,6 +44,12 @@ public class FactoryComandoServidor {
 		case 12/*Comando.AGREGAROFERTA*/:
 			comando = new AgregarOferta(cadenaLeida, ec);
 			break;
+		case 13 /*Comando.INTERCAMBIAR*/:
+		    comando = new Intercambiar(cadenaLeida, ec);
+		    break;
+		case 14 /*Comando.ACTUALIZARINTERCAMBIO*/:
+		    comando = new ActualizarIntercambio(cadenaLeida, ec);
+		    break;
 		default:
 			return null;
 		}
