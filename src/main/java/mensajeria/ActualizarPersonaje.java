@@ -20,10 +20,13 @@ public class ActualizarPersonaje extends ComandoServidor{
 	public void resolver() throws IOException {
 		Gson gson = new Gson();
 		escuchaCliente.setPaquetePersonaje((PaquetePersonaje) gson.fromJson(cadenaLeida, PaquetePersonaje.class));
+		if(escuchaCliente.getPaquetePersonaje().isGano() == true){
 		MyRandom r = new MyRandom();
 		Item item = new Item();
 		item = Servidor.getItemsExistentes()[r.obtenerAleatorioMenorQue(10)];
 		escuchaCliente.getPaquetePersonaje().getMochila().add(item);
+		}
+
 		Servidor.getConector().actualizarPersonaje(escuchaCliente.getPaquetePersonaje());
 		
 		Servidor.getPersonajesConectados().remove(escuchaCliente.getPaquetePersonaje().getId());
