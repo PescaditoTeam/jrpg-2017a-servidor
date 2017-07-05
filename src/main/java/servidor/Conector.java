@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import dominio.Mochila;
 import mensajeria.PaquetePersonaje;
 import mensajeria.PaqueteUsuario;
 
@@ -242,6 +243,7 @@ public class Conector {
 
 	public PaquetePersonaje getPersonaje(PaqueteUsuario user) {
 		ResultSet result = null;
+		ResultSet resultMochila = null;
 		try {
 			// Selecciono el personaje de ese usuario
 			PreparedStatement st = connect.prepareStatement("SELECT * FROM registro WHERE usuario = ?");
@@ -256,6 +258,9 @@ public class Conector {
 					.prepareStatement("SELECT * FROM personaje WHERE idPersonaje = ?");
 			stSeleccionarPersonaje.setInt(1, idPersonaje);
 			result = stSeleccionarPersonaje.executeQuery();
+	         PreparedStatement stDameItemsID = connect.prepareStatement("SELECT * FROM mochila WHERE idMochila = ?");
+	            stDameItemsID.setInt(1, idPersonaje);
+	            resultMochila = stDameItemsID.executeQuery();
 
 			// Obtengo los atributos del personaje
 			PaquetePersonaje personaje = new PaquetePersonaje();
@@ -270,6 +275,17 @@ public class Conector {
 			personaje.setNombre(result.getString("nombre"));
 			personaje.setExperiencia(result.getInt("experiencia"));
 			personaje.setNivel(result.getInt("nivel"));
+			int[] inventario = new int[10];
+			for(int r=0; r<inventario.length; r++){
+			    if(resultMochila.getInt(r+2) < 0){
+			        inventario[r] = 0;
+			    }
+			    else{
+			        inventario[r] = resultMochila.getInt(r+2);
+			    }
+			    
+			}
+			personaje.setMochila(new Mochila(inventario));
 
 			// Devuelvo el paquete personaje con sus datos
 			return personaje;
