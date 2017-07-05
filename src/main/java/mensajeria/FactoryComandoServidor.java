@@ -50,6 +50,9 @@ public class FactoryComandoServidor {
 		case 14 /*Comando.ACTUALIZARINTERCAMBIO*/:
 		    comando = new ActualizarIntercambio(cadenaLeida, ec);
 		    break;
+		case 15/*Comando.SACAROFERTA*/:
+		    comando = new SacarOferta(cadenaLeida, ec);
+		    break;
 		default:
 			return null;
 		}

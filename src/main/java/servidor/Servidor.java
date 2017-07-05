@@ -226,6 +226,13 @@ public class Servidor extends Thread {
     public static void AgregarOferta(Ofertas o) {
         ofertasDisponibles.add(o);
     }
+    public static void SacarOferta(Ofertas o, Ofertas o2){
+        ofertasDisponibles.remove(o);
+        if(o2!=null){
+            ofertasDisponibles.remove(o2);
+        }
+        
+    }
 
     public static void setOfertasDisponibles(
             ArrayList<Ofertas> ofertasDisponibles) {
