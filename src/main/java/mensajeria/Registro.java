@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.google.gson.Gson;
 
+import mensajeriaComandos.Comando;
 import servidor.EscuchaCliente;
 import servidor.Servidor;
 

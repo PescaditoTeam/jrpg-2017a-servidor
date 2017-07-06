@@ -37,6 +37,7 @@ public class Servidor extends Thread {
     private static Map<Integer, PaqueteMovimiento> ubicacionPersonajes = new HashMap<>();
     private static Map<Integer, PaquetePersonaje> personajesConectados = new HashMap<>();
     private static ArrayList<Ofertas> ofertasDisponibles = new ArrayList<Ofertas>();
+    private static ArrayList<Ofertas> ofertasUtilizadas = new ArrayList<Ofertas>();
     public static Item[] itemsExistentes;
 
     private static Thread server;
@@ -228,10 +229,8 @@ public class Servidor extends Thread {
     }
     public static void SacarOferta(Ofertas o1, Ofertas o2){
         
-        int index1 = ofertasDisponibles.indexOf(o1);
-        ofertasDisponibles.remove(index1);
-        int index2 = ofertasDisponibles.indexOf(o1);
-        ofertasDisponibles.remove(index2);
+        ofertasUtilizadas.add(o1);
+        ofertasUtilizadas.add(o2);
     }
 
     public static void setOfertasDisponibles(

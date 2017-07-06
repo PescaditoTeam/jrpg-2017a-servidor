@@ -1,5 +1,6 @@
 package mensajeria;
 
+import mensajeriaComandos.Comando;
 import servidor.EscuchaCliente;
 
 public class FactoryComandoServidor {

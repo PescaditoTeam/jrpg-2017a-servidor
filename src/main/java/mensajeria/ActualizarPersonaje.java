@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 
 import dominio.Item;
 import dominio.MyRandom;
-import recursos.Recursos;
 import servidor.EscuchaCliente;
 import servidor.Servidor;
 

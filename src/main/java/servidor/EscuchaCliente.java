@@ -7,7 +7,6 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
-import mensajeria.Comando;
 import mensajeria.FactoryComandoServidor;
 import mensajeria.Paquete;
 import mensajeria.PaqueteAtacar;
@@ -18,6 +17,7 @@ import mensajeria.PaqueteFinalizarBatalla;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 import mensajeria.PaqueteUsuario;
+import mensajeriaComandos.Comando;
 
 public class EscuchaCliente extends Thread {
 
