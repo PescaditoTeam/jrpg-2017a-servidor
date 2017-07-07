@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import mensajeriaComandos.Comando;
 import servidor.EscuchaCliente;
 import servidor.Servidor;
+import servidorChat.SocketServer;
 
 public class InicioSesion extends ComandoServidor{
 
@@ -32,7 +33,7 @@ public class InicioSesion extends ComandoServidor{
 			escuchaCliente.getPaquetePersonaje().setComando(Comando.INICIOSESION);
 			escuchaCliente.getPaquetePersonaje().setMensaje(Paquete.msjExito);
 			escuchaCliente.setIdPersonaje(escuchaCliente.getPaquetePersonaje().getId());
-			
+			SocketServer.agregarCliente(escuchaCliente.getPaqueteUsuario().getUsername());
 			try {
 				escuchaCliente.getSalida().writeObject(gson.toJson(escuchaCliente.getPaquetePersonaje()));
 			} catch (IOException e) {

@@ -28,7 +28,7 @@ import dominio.Item;
 import dominio.Ofertas;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
-import recursos.Recursos;
+import servidorChat.SocketServer;
 
 public class Servidor extends Thread {
 
@@ -55,9 +55,11 @@ public class Servidor extends Thread {
 
     public static AtencionConexiones atencionConexiones = new AtencionConexiones();
     public static AtencionMovimientos atencionMovimientos = new AtencionMovimientos();;
-
+    public static SocketServer serverChat;
+    
     public static void main(String[] args) {
         cargarInterfaz();
+        serverChat = new SocketServer();
     }
 
     private static void cargarInterfaz() {
