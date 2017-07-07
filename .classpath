@@ -10,7 +10,5 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/cliente"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dominio"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Dropbox/Documents/Eclipse/ClienteJAR.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Dropbox/Documents/Eclipse/DominioJAR.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
