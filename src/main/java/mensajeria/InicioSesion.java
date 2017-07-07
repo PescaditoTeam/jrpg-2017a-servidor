@@ -3,11 +3,11 @@ package mensajeria;
 import java.io.IOException;
 
 import com.google.gson.Gson;
+import com.socket.SocketServer;
 
 import mensajeriaComandos.Comando;
 import servidor.EscuchaCliente;
 import servidor.Servidor;
-import servidorChat.SocketServer;
 
 public class InicioSesion extends ComandoServidor{
 

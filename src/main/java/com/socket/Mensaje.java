@@ -1,4 +1,4 @@
-package servidorChat;
+package com.socket;
 
 import java.io.Serializable;
 

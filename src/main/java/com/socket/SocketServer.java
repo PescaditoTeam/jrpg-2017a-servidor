@@ -1,9 +1,11 @@
-package servidorChat;
+package com.socket;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import com.chat.socket.Mensaje;
 
 import servidor.EscuchaCliente;
 /*

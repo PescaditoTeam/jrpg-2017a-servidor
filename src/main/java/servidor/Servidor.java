@@ -24,11 +24,12 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.socket.SocketServer;
+
 import dominio.Item;
 import dominio.Ofertas;
 import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
-import servidorChat.SocketServer;
 
 public class Servidor extends Thread {
 
