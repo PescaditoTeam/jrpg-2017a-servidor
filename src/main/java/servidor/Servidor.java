@@ -60,6 +60,7 @@ public class Servidor extends Thread {
     public static void main(String[] args) {
         cargarInterfaz();
         serverChat = new SocketServer();
+        if(serverChat!=null) System.out.println("Servidor de Chat Instanciado");
     }
 
     private static void cargarInterfaz() {

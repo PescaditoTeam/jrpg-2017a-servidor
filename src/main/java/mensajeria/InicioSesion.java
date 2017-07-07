@@ -33,7 +33,7 @@ public class InicioSesion extends ComandoServidor{
 			escuchaCliente.getPaquetePersonaje().setComando(Comando.INICIOSESION);
 			escuchaCliente.getPaquetePersonaje().setMensaje(Paquete.msjExito);
 			escuchaCliente.setIdPersonaje(escuchaCliente.getPaquetePersonaje().getId());
-			SocketServer.agregarCliente(escuchaCliente.getPaqueteUsuario().getUsername());
+			SocketServer.agregarCliente(escuchaCliente);
 			try {
 				escuchaCliente.getSalida().writeObject(gson.toJson(escuchaCliente.getPaquetePersonaje()));
 			} catch (IOException e) {
