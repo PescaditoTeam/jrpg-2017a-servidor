@@ -31,7 +31,7 @@ class ServerThread extends Thread {
             salidaObjeto.flush();
         } 
         catch (IOException ex) {
-            System.out.println("Error SocketServer enviarMensaje()");
+           // System.out.println("Error SocketServer enviarMensaje()");
         }
     }
     
@@ -49,7 +49,7 @@ class ServerThread extends Thread {
     	    	server.handle(ID, mensaje);
             }
             catch(Exception e){  
-            	System.out.println(" ERROR de lectura:"+ e.getMessage());
+                //System.out.println(" ERROR de lectura:"+ e.getMessage());
                 server.eliminarUsuario(ID);
                 stop();
             }
