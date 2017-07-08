@@ -24,6 +24,7 @@ public class ActualizarPersonaje extends ComandoServidor{
 		Item item = new Item();
 		item = Servidor.getItemsExistentes()[r.obtenerAleatorioMenorQue(10)];
 		escuchaCliente.getPaquetePersonaje().getMochila().add(item);
+		escuchaCliente.getPaquetePersonaje().setItemGanado(item.getNombre());
 		}
 
 		Servidor.getConector().actualizarPersonaje(escuchaCliente.getPaquetePersonaje());
